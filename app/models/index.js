@@ -22,9 +22,14 @@ db.sequelize = sequelize;
 
 db.project = require("./project.model.js")(sequelize, Sequelize);
 db.floorplan = require("./floorplan.model.js")(sequelize, Sequelize);
+db.version = require("./version.model.js")(sequelize, Sequelize);
 
 // create a one to many relationship between project and floorplan
 db.project.hasMany(db.floorplan, {foreignKey: 'fk_projectid', sourceKey: 'id'});
 db.floorplan.belongsTo(db.project, {foreignKey: 'fk_projectid', targetKey: 'id'});
+
+// create a one to many relationship between floorplan and associated versions
+db.floorplan.hasMany(db.version, {foreignKey: 'fk_floorplanid', sourceKey: 'id'});
+db.version.belongsTo(db.floorplan, {foreignKey: 'fk_floorplanid', targetKey: 'id'});
 
 module.exports = db;

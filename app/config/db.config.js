@@ -1,10 +1,10 @@
 module.exports = {
     HOST: "localhost",
     USER: "postgres",
-    PASSWORD: "123",
+    PASSWORD: "postgres",
     DB: "fieldwire",
     dialect: "postgres",
-    port: 5400,
+    port: 5432,
     pool: {
       max: 5,
       min: 0,
